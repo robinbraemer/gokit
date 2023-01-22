@@ -1,4 +1,4 @@
-package httputil
+package httpserv
 
 import (
 	"context"
