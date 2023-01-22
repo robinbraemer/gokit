@@ -8,3 +8,4 @@ Development Kit contains utilities useful for production Go applications.
 - `otel` - OpenTelemetry instrumentation utilities suggesting [HonneyComb](https://www.honeycomb.io/) as a backend.
 - `configutil` - utilities for loading configuration files and environment variables using [Viper](https://github.com/spf13/viper) as backend.
 - `httputil` - HTTP utilities like error handler, graceful server shutdown, etc.
+- `sync/rungroup` - run goroutines gracefully by waiting for them to finish.
