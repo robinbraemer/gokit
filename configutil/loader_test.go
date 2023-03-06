@@ -13,16 +13,32 @@ type config struct {
 }
 
 func TestLoader_Load(t *testing.T) {
-	c := new(config)
-	_ = os.Setenv("TEST_B", "baz")
-	_ = os.Setenv("B", "bla")
+	t.Run("file", func(t *testing.T) {
+		c := new(config)
+		_ = os.Setenv("TEST_B", "baz")
+		_ = os.Setenv("B", "bla")
 
-	err := Loader{
-		File:      "testdata/config.yml",
-		EnvPrefix: "TEST",
-	}.Load(c)
+		err := Loader{
+			File:      "testdata/config.yml",
+			EnvPrefix: "TEST",
+		}.Load(c)
 
-	require.NoError(t, err)
-	require.Equal(t, "foo", c.A)
-	require.Equal(t, "baz", c.B)
+		require.NoError(t, err)
+		require.Equal(t, "foo", c.A)
+		require.Equal(t, "baz", c.B)
+	})
+
+	t.Run("no file", func(t *testing.T) {
+		c := new(config)
+		_ = os.Setenv("TEST2_B", "baz")
+		_ = os.Setenv("B", "bla")
+
+		err := Loader{
+			EnvPrefix: "TEST2",
+		}.Load(c)
+
+		require.NoError(t, err)
+		require.Equal(t, "", c.A)
+		require.Equal(t, "baz", c.B)
+	})
 }
