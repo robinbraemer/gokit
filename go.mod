@@ -2,7 +2,7 @@ module github.com/robinbraemer/gokit
 
 go 1.23.0
 
-toolchain go1.24.5
+toolchain go1.24.6
 
 require (
 	github.com/go-logr/logr v1.4.3
